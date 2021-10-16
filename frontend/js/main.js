@@ -39,37 +39,44 @@ gn.init(args).then(function() {
         // data.dm.alpha	( devicemotion event rotationRate alpha value )
         // data.dm.beta		( devicemotion event rotationRate beta value )
         // data.dm.gamma	( devicemotion event rotationRate gamma value )
-        $('#do_alpha').html(data.do.alpha);
-        $('#do_beta').html(data.do.beta);
-        $('#do_gamma').html(data.do.gamma);
+        //$('#do_alpha').html(data.do.alpha);
 
-        var betaLevel = (360 - data.do.beta) % 90;
-        var gammaLevel = (360 - data.do.gamma) % 90;
-        var betaLevel90 = 90 - betaLevel;
-        var gammaLevel90 = 90 - gammaLevel;
+        var betaNear = Math.abs(data.do.beta % 90).toFixed(2);
+        var gammaNear = Math.abs(data.do.gamma % 90).toFixed(2);
 
-        var betaLevel = Math.min(betaLevel, betaLevel90).toFixed(2);
-        var gammaLevel = Math.min(gammaLevel, gammaLevel90).toFixed(2);
+        var betaTo90 = 90 - betaNear;
+        var gammaTo90 = 90 - gammaNear;
 
-        var levelOfTwo = Math.min(betaLevel, gammaLevel);
+        var betaDistance = Math.min(betaNear, betaTo90).toFixed(2);
+        var gammaDistance = Math.min(gammaNear, gammaTo90).toFixed(2);
 
-        var distance = 10 - levelOfTwo;
+        $('#do_beta').html(betaDistance + "°");
+        $('#do_gamma').html(gammaDistance + "°");
 
-        if (distance > 9.5) {
-            $('#level-indicator').css('background-color', 'green');
-            $('#text').html("YES");
-        } else if (distance > 8.5) {
-            $('#level-indicator').css('background-color', 'lightgreen');
+        var closest = Math.min(betaDistance, gammaDistance).toFixed(2);;
+
+        if (betaDistance == 0 && gammaDistance == 0) {
+            $('#level-indicator').css('background-color', 'pink');
+            $('#text').html("Suspiciously flat");
+            $('#face').html("🤔");
+        } else if (betaDistance < 0.8 && gammaDistance < 0.8) {
+            $('#level-indicator').css('background-color', 'GREEN');
+            $('#text').html("FLAT");
+            $('#face').html("😍");
+        } else if (closest < 1.5) {
+            $('#level-indicator').css('background-color', 'MEDIUMSEAGREEN');
             $('#text').html("yes");
-        } else if (distance > 0) {
-            $('#level-indicator').css('background-color', 'yellow');
+            $('#face').html("😄");
+        } else if (closest < 2.5) {
+            $('#level-indicator').css('background-color', 'GOLD');
             $('#text').html("close");
+            $('#face').html("😯");
         } else {
             $('#level-indicator').css('background-color', 'red');
             $('#text').html("no");
+            $('#face').html("😠");
         }
 
-        $('#distance').html(distance);
         /*
         $('#dm_x').html(data.dm.x);
         $('#dm_y').html(data.dm.y);

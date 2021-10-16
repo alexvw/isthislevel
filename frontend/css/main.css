@@ -37,7 +37,13 @@ html {
 #text {
     font-size: 400%;
     font-weight: bold;
-    padding-top: 25%;
+    padding-top: 5%;
+}
+
+#face {
+    font-size: 499%;
+    font-weight: bold;
+    padding-top: 10%;
 }
 
 #level-head {
