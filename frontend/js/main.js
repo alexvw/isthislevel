@@ -68,7 +68,18 @@ function initDevice(){
             $('#do_beta').html(betaDistance + "°");
             $('#do_gamma').html(gammaDistance + "°");
     
-            var closest = Math.min(betaDistance, gammaDistance).toFixed(2);;
+            var closest = Math.min(betaDistance, gammaDistance).toFixed(2);
+
+            if (betaDistance < 1){
+                $('#do_beta').addClass("level");
+            }else{
+                $('#do_beta').removeClass("level");
+            }
+            if (gammaDistance < 1){
+                $('#do_gamma').addClass("level");
+            }else{
+                $('#do_gamma').removeClass("levl");
+            }
     
             if (betaDistance == 0 && gammaDistance == 0) {
                 $('#level-indicator').css('background-color', 'pink');
@@ -78,7 +89,7 @@ function initDevice(){
                 $('#level-indicator').css('background-color', 'GREEN');
                 $('#text').html("FLAT");
                 $('#face').html("😍");
-            } else if (closest < 1.5) {
+            } else if (closest < 1) {
                 $('#level-indicator').css('background-color', 'MEDIUMSEAGREEN');
                 $('#text').html("yes");
                 $('#face').html("😄");

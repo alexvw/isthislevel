@@ -34,8 +34,20 @@ html {
     color: white;
 }
 
+.degree{
+    font-size:300%;
+}
+
+.level:after
+{
+    content: '\2713';
+    display: inline-block;
+    color: greenyellow;
+    padding: 0 6px 0 0;
+}
+
 #text {
-    font-size: 400%;
+    font-size: 300%;
     font-weight: bold;
     padding-top: 5%;
 }
