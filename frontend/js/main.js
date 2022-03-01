@@ -75,10 +75,11 @@ function initDevice(){
             }else{
                 $('#do_beta').removeClass("level");
             }
+
             if (gammaDistance < 1){
                 $('#do_gamma').addClass("level");
             }else{
-                $('#do_gamma').removeClass("levl");
+                $('#do_gamma').removeClass("level");
             }
     
             if (betaDistance == 0 && gammaDistance == 0) {
