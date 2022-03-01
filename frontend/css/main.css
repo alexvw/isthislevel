@@ -316,3 +316,15 @@ textarea {
         page-break-after: avoid;
     }
 }
+
+.request-button {
+    display: none;
+    background-color: #229c22;
+    padding: 40px;
+    position: relative;
+    width: 100%;
+    border: none;
+    color: white;
+    font-size: 200%;
+    margin: auto;
+}
