@@ -64,6 +64,9 @@ function initDevice(){
     
             var betaDistance = Math.min(betaNear, betaTo90).toFixed(2);
             var gammaDistance = Math.min(gammaNear, gammaTo90).toFixed(2);
+
+            var betaDelta = data.do.beta;
+            var gammaDelta = data.do.gamma;
     
             $('#do_beta').html(betaDistance + "°");
             $('#do_gamma').html(gammaDistance + "°");
@@ -103,6 +106,29 @@ function initDevice(){
                 $('#text').html("no");
                 $('#face').html("😠");
             }
+
+            // First, define the x and y degrees as variables
+            let xDegrees = data.do.beta;
+            let yDegrees = data.do.gamma;
+
+            // Next, calculate the rotation values in degrees for the x and y axes
+            // This is done by adding the x and y degrees and then adjusting for the
+            // fact that a positive y value means the bubble should be rotated in the
+            // opposite direction
+            let xRotation = xDegrees;
+            let yRotation = yDegrees * -1;
+
+            // Create the CSS that will be applied to the bubble level element
+            let bubbleLevelCSS = 'rotateX('+xRotation+'deg) rotateY('+yRotation+'deg)';
+
+            // Apply the CSS to the bubble level element using jQuery
+            $('#face').css("transform", bubbleLevelCSS);
+            console.log($('#face').css("transform"));
+
+            $('#face').css("font-size", '800%');
+
+            $('#gamma-line').css("margin-left", betaDelta+50+"%");
+            $('#beta-line').css("margin-top", gammaDelta+50+"%");
     
             /*
             $('#dm_x').html(data.dm.x);
